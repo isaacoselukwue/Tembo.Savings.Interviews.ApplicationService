@@ -1,8 +1,8 @@
 # Log
 
 ## Asummptions
-- **AdminstratorOne amounts:** the provider expects integers we assume they expect pence so we convert decimal value by 100. We also treat the first entry in the `User.BankAccounts` as primary account for funding source.
-- **AccountValidation:** we assume the adminstrators can perform balance/lien status on accounts, can debit any account currency and debit will succeed.
+- **AdministratorOne amounts:** the provider expects integers we assume they expect pence so we convert decimal value by 100. We also treat the first entry in the `User.BankAccounts` as primary account for funding source.
+- **AccountValidation:** we assume the administrators can perform balance/lien status on accounts, can debit any account currency and debit will succeed. We also assume currency is in ISO format eg EUR, GBP, USD
 - **NINO Validation:** we assume that providers can validate Nino (eg with HMRC api) and out of scope for processor.
 - **Age calculations:** we calculate based on Europe/London time zone
 
@@ -16,11 +16,11 @@
 - **Tests:** tests data are generated using bogus, parameterised to reduce duplication and are handle age/payment boundaries. Also added CI file to trigger `dotnet test` for project.
 
 ## Observations
-- The `Services.AdminstratorOne.Abstractions` has only one synchronous method, standardise error codes, unlike the `Services.AdminstratorTwo.Abstractions`.
-- Provider `Services.AdminstratorTwo.Abstractions` does not support deleting account if debit fails.
+- The `Services.AdministratorOne.Abstractions` has only one synchronous method, standardise error codes, unlike the `Services.AdministratorTwo.Abstractions`.
+- Provider `Services.AdministratorTwo.Abstractions` does not support deleting account if debit fails.
 
 ## Todo
-- Complete the application sagas for roburst handling so that partial failures can be retried.
+- Complete the application sagas for robust handling so that partial failures can be retried.
 - Add structured logging, health checks and traces support for events lifecycle, external calls.
 - Add circuit breaker (polly) for external services and graceful handling (eg to dead letter queue)
 - Create proper mock for bus ensuring that events are raised in order eg from investor created to application completed

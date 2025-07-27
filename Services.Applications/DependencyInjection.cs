@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Services.Applications.Adapters;
 using Services.Applications.Configuration;
+using Services.Applications.Infrastructure;
 using Services.Applications.Persistence;
 using Services.Common.Abstractions.Abstractions;
 
@@ -16,7 +17,7 @@ public static class DependencyInjection
 
         services.Configure<ValidationMessagesConfig>(configuration.GetSection("ValidationMessages"));
 
-        services.AddScoped<ICurrencyConverter>();
+        services.AddScoped<ICurrencyConverter, CurrencyConverter>();
         services.AddScoped<IApplicationRepository, ApplicationRepository>();
 
         services.AddScoped<AdministratorOneAdapter>();
